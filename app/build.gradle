@@ -1,46 +1,49 @@
 apply plugin: 'com.android.application'
 
 android {
-	compileSdkVersion compileAndTargetSdk
-	buildToolsVersion '27.0.3'
+    compileSdkVersion compileAndTargetSdk
+    buildToolsVersion '27.0.3'
 
-	defaultConfig {
-		applicationId "com.example.ab.testing"
-		minSdkVersion 27
-		targetSdkVersion compileAndTargetSdk
-		versionCode 1
-		versionName "1.0"
-		resConfigs('en', 'xxxhdpi')
-		ndk {
-			abiFilters "x86", "x86_64", "arm64-v8a", "armeabi-v7a"
-		}
-	}
+    defaultConfig {
+        applicationId "com.example.ab.testing"
+        minSdkVersion 18
+        targetSdkVersion compileAndTargetSdk
+        versionCode 1
+        versionName "1.0"
+        resConfigs('en', 'xxxhdpi')
+        ndk {
+            abiFilters "x86", "x86_64", "arm64-v8a", "armeabi-v7a"
+        }
+    }
 
-	buildTypes {
-		release {
-			minifyEnabled true
-			shrinkResources true
-			proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-		}
-		debug {
-			splits.abi.enable = false
-			splits.density.enable = false
-			aaptOptions.cruncherEnabled = false
-		}
-	}
+    buildTypes {
+        release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            splits.abi.enable = false
+            splits.density.enable = false
+            aaptOptions.cruncherEnabled = false
+        }
+    }
 
-	dexOptions {
-		preDexLibraries true
-		maxProcessCount 8
-	}
+    dexOptions {
+        preDexLibraries true
+        maxProcessCount 8
+    }
 }
 
 dependencies {
-	implementation ("com.android.support:appcompat-v7:$supportLibraryVersion") {
-		force = true
-	}
-	implementation "com.google.firebase:firebase-core:$firebaseLibraryVersion"
-	implementation "com.google.firebase:firebase-config:$firebaseLibraryVersion"
+    implementation("com.android.support:appcompat-v7:$supportLibraryVersion") {
+        force = true
+    }
+
+    implementation 'com.google.firebase:firebase-config:16.0.0'
+    implementation 'com.google.firebase:firebase-core:16.0.3'
 }
 
 apply plugin: 'com.google.gms.google-services'
+com.google.gms.googleservices.GoogleServicesPlugin.config.disableVersionCheck = true
+

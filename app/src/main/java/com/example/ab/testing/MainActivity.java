@@ -16,7 +16,7 @@ public class MainActivity extends AppCompatActivity{
 	private FirebaseAnalytics mFirebaseAnalytics;
 	private FirebaseRemoteConfig mFirebaseRemoteConfig;
 	private String experiment1_variant;
-	private TextView bubbleTop, bubbleBottom;
+	private TextView bubbleTop, bubbleBottom, bubbleMiddle;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +41,7 @@ public class MainActivity extends AppCompatActivity{
 	private void bindWidget() {
 		bubbleTop = findViewById(R.id.bubble_top);
 		bubbleBottom = findViewById(R.id.bubble_bottom);
+		bubbleMiddle = findViewById(R.id.bubble_middle);
 	}
 
 	private void fetchData() {
@@ -60,6 +61,8 @@ public class MainActivity extends AppCompatActivity{
 						bubbleTop.setVisibility(View.VISIBLE);
 					} else if ("Bottom".equals(experiment1_variant)) {
 						bubbleBottom.setVisibility(View.VISIBLE);
+					} else if ("None".equals(experiment1_variant)) {
+						bubbleMiddle.setVisibility(View.VISIBLE);
 					}
 				}
 			}
@@ -79,6 +82,12 @@ public class MainActivity extends AppCompatActivity{
 				logEventToFirebase();
 			}
 		});
+		bubbleMiddle.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View view) {
+				logEventToFirebase();
+			}
+		});
 	}
 
 	private void logEventToFirebase() {
@@ -87,5 +96,6 @@ public class MainActivity extends AppCompatActivity{
 		mFirebaseAnalytics.logEvent("BubbleClicked", params);
 		bubbleTop.setVisibility(View.GONE);
 		bubbleBottom.setVisibility(View.GONE);
+		bubbleMiddle.setVisibility(View.GONE);
 	}
 }

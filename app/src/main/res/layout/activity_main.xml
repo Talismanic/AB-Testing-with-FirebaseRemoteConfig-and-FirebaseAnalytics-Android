@@ -12,10 +12,18 @@
 		style="@style/CustomTextView"
 		android:visibility="gone"/>
 
+
+	<TextView
+		android:id="@+id/bubble_middle"
+		android:layout_alignParentBottom="true"
+		style="@style/CustomTextView"
+		android:visibility="gone"/>
+
 	<TextView
 		android:id="@+id/bubble_bottom"
 		android:layout_alignParentBottom="true"
 		style="@style/CustomTextView"
 		android:visibility="gone"/>
+
 
 </RelativeLayout>
